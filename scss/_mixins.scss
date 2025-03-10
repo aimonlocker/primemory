@@ -1,0 +1,235 @@
+// Reset
+@mixin reset {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: 0;
+}
+
+
+// Clearfix
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+
+// Text-indent
+@mixin text-indent {
+  display: inline-block;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 0;
+}
+
+
+// Pseudo
+@mixin pseudo($display: block, $pos: absolute, $content: '') {
+  content: $content;
+  display: $display;
+  position: $pos;
+}
+
+
+// Object-fit
+@mixin object-fit($ob: cover) {
+  width: 100%;
+  height: 100%;
+  object-fit: $ob;
+
+  @include msie {
+    height: auto;
+  }
+}
+
+
+// Background
+$iurl: '../images';
+@mixin background($bgi, $bgp: 0 0, $bgr: no-repeat, $bgc: transparent) {
+  background-color: $bgc;
+  background-image: url('#{$iurl}/#{$bgi}');
+  background-position: $bgp;
+  background-repeat: $bgr;
+}
+
+
+// Placeholder
+@mixin placeholder {
+    &.placeholder { @content; }
+    &:-moz-placeholder { @content; }
+    &::-moz-placeholder { @content; }
+    &:-ms-input-placeholder { @content; }
+    &::-webkit-input-placeholder { @content; }
+}
+
+
+// Content width
+@mixin content-width($max-width, $s-padding: 30px) {
+	width: 100%;
+	max-width: $max-width;
+	margin: 0 auto;
+	padding: 0 $s-padding;
+}
+
+// Ratio
+@mixin ratio($rwidth, $rheight) {
+  width: 100%;
+  height: 0;
+  padding-top: ($rheight / $rwidth) * 100%;
+  position: relative;
+
+  > div {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+  }
+
+  // img {
+  //   @include object-fit;
+  // }
+}
+
+
+// Text shortening
+@mixin text-shorten($numLines: 1) {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+ 
+  @supports (-webkit-line-clamp: $numLines) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: initial;
+    display: -webkit-box;
+    -webkit-line-clamp: $numLines;
+    -webkit-box-orient: vertical;
+  }
+}
+
+
+// Center element
+@mixin center($position) {
+  position: absolute;
+  
+  @if $position == 'vertical' {
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+  @else if $position == 'horizontal' {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translate(-50%);
+  }
+  @else if $position == 'both' {
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+  @else if $position == 'none' {
+    position: relative;
+    top: 0;
+    left: 0;
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+  }
+}
+
+
+// Gradients
+@mixin background-gradient($start-color, $end-color, $orientation) { 
+  background: $start-color;
+
+  @if $orientation == 'vertical' {
+    background: -webkit-linear-gradient(top, $start-color, $end-color);
+    background: linear-gradient(to bottom, $start-color, $end-color);
+  } @else if $orientation == 'horizontal' {
+    background: -webkit-linear-gradient(left, $start-color, $end-color);
+    background: linear-gradient(to right, $start-color, $end-color);
+  } @else {
+    background: -webkit-radial-gradient(center, ellipse cover, $start-color, $end-color);
+    background: radial-gradient(ellipse at center, $start-color, $end-color);
+  }
+}
+
+
+// Button hover with transition
+@mixin skew-background-transition($initial, $hover, $inverted: false) {
+  background: linear-gradient(
+    90deg,
+    $hover 0%,
+    $hover 50%,
+    $initial 50%,
+    $initial 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 200% 100%;
+
+  background-position: right bottom;
+  @if $inverted {
+    background-position: left bottom;
+  }
+  transition: background-position 0.25s ease-out;
+
+  &:hover {
+    background-position: left bottom;
+    @if $inverted {
+      background-position: right bottom;
+    }
+  }
+}
+
+
+// CSS Triangles Mixin
+@mixin css-triangle($direction, $color, $height, $width) {
+    // Base styles for all triangles
+    border-style: solid;
+    height: 0;
+    width: 0;
+    // Cardinal Directions - can't be scalene this way
+    @if($direction == 'top') {
+        border-color: transparent transparent $color transparent;
+        border-width: 0 ($width/2) $height ($width/2);
+    }
+    @if ($direction == 'bottom') {
+        border-color: $color transparent transparent transparent;
+        border-width: $height ($width/2) 0 ($width/2);
+    }
+    @if ($direction == 'right') {
+        border-color: transparent transparent transparent $color;
+        border-width: ($height/2) 0 ($height/2) $width;
+    }
+    @if ($direction == 'left') {
+        border-color: transparent $color transparent transparent;
+        border-width: ($height/2) $width ($height/2) 0;
+    }
+    // Ordinal Directions - can be scalene this way!
+    @if ($direction == 'top-left') {
+        border-color: $color transparent transparent transparent;
+        border-width: $height $width 0 0;
+    }
+    @if ($direction == 'top-right') {
+        border-color: transparent $color transparent transparent;
+        border-width: 0 $width $height 0;
+    }
+    @if ($direction == 'bottom-left') {
+        border-color: transparent transparent transparent $color;
+        border-width: $height 0 0 $width;
+    }
+    @if ($direction == 'bottom-right') {
+        border-color: transparent transparent $color transparent;
+        border-width: 0 0 $height $width;
+    }
+}

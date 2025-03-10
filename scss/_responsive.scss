@@ -1,0 +1,84 @@
+// Breakpoint
+$xlarge: 1200px;
+$large: 1024px;
+$medium: 768px;
+$mobile: 480px;
+
+
+// Responsive
+
+// 1200px and less
+@mixin laptop {
+  @media (max-width: #{$xlarge}) {
+    @content;
+  }
+}
+
+// 1199px and less
+@mixin laptop-1 {
+  @media (max-width: #{$xlarge - 1px}) {
+    @content;
+  }
+}
+
+// 1024px and less
+@mixin tablet-h {
+  @media (max-width: #{$large}) {
+    @content;
+  }
+}
+
+// 1023px and less
+@mixin tablet-h-1 {
+  @media (max-width: #{$large - 1px}) {
+    @content;
+  }
+}
+
+// 768px and less
+@mixin tablet-v {
+  @media (max-width: #{$medium}) {
+    @content;
+  }
+}
+
+// 767px and less
+@mixin tablet-v-1 {
+  @media (max-width: #{$medium - 1px}) {
+    @content;
+  }
+}
+
+// 480px and less
+@mixin mobile {
+  @media (max-width: #{$mobile}) {
+    @content;
+  }
+}
+
+@mixin mobile-h {
+	@media (max-width: 960px) and (orientation: landscape) {
+		@content;
+	}
+}
+
+// Custom Breakpoint (width)
+@mixin custom-screen-w($custom) {
+  @media (max-width: #{$custom}px) {
+    @content;
+  }
+}
+
+// Custom Breakpoint (height)
+@mixin custom-screen-h($custom) {
+  @media (max-height: #{$custom}px) {
+    @content;
+  }
+}
+
+// Internet Explorer 11
+@mixin msie {
+  @media all and (-ms-high-contrast:none) {
+    @content;
+  }
+}

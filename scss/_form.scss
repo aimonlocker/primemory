@@ -1,0 +1,86 @@
+.form-item,
+.form-actions {
+	margin: 0;
+}
+
+input:not([type='checkbox']):not([type='radio']):not([type='submit']) {
+  //@include placeholder;
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+  border-radius: 0;
+}
+
+select {
+  // -webkit-appearance: none;
+  // -moz-appearance: none;
+  // appearance: none;
+  border-radius: 0;
+
+  // &::-ms-expand {
+  //   display: none;
+  // }
+}
+
+textarea {
+  //@include placeholder;
+	border-radius: 0;
+}
+
+
+// Custom radio button and checkbox
+// input[type='checkbox'],
+// input[type='radio'] {
+//   display: none;
+//
+//   &::-ms-check {
+//   	display: none;
+//   }
+// }
+//
+// input[type='checkbox'] + label,
+// input[type='radio'] + label {
+//   display: inline-block;
+//   width: auto;
+//   min-height: 16px;
+//   padding-left: 26px;
+//   vertical-align: middle;
+//   cursor:pointer;
+//   position: relative;
+//   font-size: 14px;
+//
+//   &:before {
+//   	@include pseudo;
+//   	width: 16px;
+//   	height: 16px;
+//   	border: 1px solid $color-base;
+//     border-radius: 4px;
+//   	left: 0;
+//   	top: 0;
+//   	z-index: 1;
+//   }
+//
+//   &:after {
+//   	@include pseudo;
+// 		width: 8px;
+// 		height: 8px;
+// 		margin: 0;
+// 		background: none;
+// 		background-color: $color-base;
+//     border-radius: 2px;
+// 		left: 5px;
+// 		top: 5px;
+// 		z-index: 1;
+// 		transition: all 80ms ease-in-out;
+// 		transform: scale(0);
+// 	}
+// }
+//
+// input[type='checkbox']:checked + label,
+// input[type='radio']:checked + label {
+//
+// 	&:after {
+// 		transform: scale(1);
+// 	}
+// }

@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&display=swap');
+
+//Function for REM font size
+$font-size-rem: 18;
+
+@function rem($value) {
+    $remValue: #{calc($value / $font-size-rem)}rem;
+    @return $remValue;
+}
+
+
+// Font general
+$font-base: "Afacad", sans-serif;
+$font-size-base: #{calc($font-size-rem)}px;
+
+
+// Headings
+$h1: rem(70);
+$h2: rem(100);
+$h3: rem(48);
+$h4: rem(24);
+$h5: rem(22);
+$h6: rem(20);
+$small: rem(16);
+$xsmall: rem(14);
+
+
+h1 {
+	font-size: $h1;
+	font-weight: 500;
+	line-height: 1;
+	letter-spacing: normal;
+
+	@include tablet-h-1 {
+		font-size: rem(42);
+	}
+}
+
+h2 {
+	font-size: $h2;
+	font-weight: 500;   
+	line-height: 1;
+	letter-spacing: normal;
+
+	@include laptop-1 {
+		font-size: $h1;
+	}
+}
+
+h3 {
+	font-size: $h3;
+	font-weight: 500;
+}
+
+h4 {
+	font-size: $h4;
+	font-weight: 500;
+}
+
+h5 {
+	font-size: $h5;
+	font-weight: 400;
+}
+
+h6 {
+	font-size: $h6;
+	font-weight: 500;
+}
