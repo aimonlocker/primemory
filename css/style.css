@@ -433,6 +433,7 @@ header a.anchor {
   display: -webkit-flex;
   display: flex;
   width: 200%;
+  height: 400px;
   position: relative;
   left: 0;
   transition: all 0.3s ease-in-out;
@@ -440,6 +441,7 @@ header a.anchor {
 @media (max-width: 1023px) {
   .services #slide-container {
     width: 100%;
+    height: auto;
     left: 0 !important;
   }
 }
