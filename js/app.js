@@ -185,4 +185,8 @@ $(document).ready(function() {
             $('#myPopup').fadeOut();
         }
     });
+
+    //Current Year
+    const currentYear = new Date().getFullYear();
+    $('#current-year').text(currentYear);
 });
